@@ -7,6 +7,18 @@ import (
 // EmptyStruct a struct that contains nothing.
 type EmptyStruct struct{}
 
+// MapStructFields calls f with v fields.
+// will break iteration if f returns an error.
+func MapStructFields(v reflect.Type, f func(i int, v reflect.StructField) error) (err error) {
+	n := v.NumField()
+	for i := 0; i < n; i++ {
+		if err = f(i, v.Field(i)); err != nil {
+			break
+		}
+	}
+	return
+}
+
 // MapTypeOfStructFields calls f with v fields.
 // will break iteration if f returns an error.
 func MapTypeOfStructFields(v reflect.Type, f func(i int, v reflect.Type) error) (err error) {

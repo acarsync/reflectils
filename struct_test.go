@@ -14,6 +14,18 @@ type ExampleStruct struct {
 	C int
 }
 
+func ExampleMapStructFields() {
+	v := reflect.TypeOf((*ExampleStruct)(nil)).Elem()
+	reflectils.MapStructFields(v, func(i int, v reflect.StructField) error {
+		fmt.Println(i, v.Name, v.Type)
+		return nil
+	})
+	// Output:
+	// 0 A string
+	// 1 B uint
+	// 2 C int
+}
+
 func ExampleMapTypeOfStructFields() {
 	v := reflect.TypeOf((*ExampleStruct)(nil)).Elem()
 	reflectils.MapTypeOfStructFields(v, func(i int, v reflect.Type) error {
