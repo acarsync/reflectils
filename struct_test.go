@@ -16,7 +16,7 @@ type ExampleStruct struct {
 
 func ExampleMapStructFields() {
 	v := reflect.TypeOf((*ExampleStruct)(nil)).Elem()
-	reflectils.MapStructFields(v, func(i int, v reflect.StructField) error {
+	_ = reflectils.MapStructFields(v, func(i int, v reflect.StructField) error {
 		fmt.Println(i, v.Name, v.Type)
 		return nil
 	})
@@ -46,7 +46,7 @@ func ExampleMapStructFields_withErrorHandling() {
 
 func ExampleMapTypeOfStructFields() {
 	v := reflect.TypeOf((*ExampleStruct)(nil)).Elem()
-	reflectils.MapTypeOfStructFields(v, func(i int, v reflect.Type) error {
+	_ = reflectils.MapTypeOfStructFields(v, func(i int, v reflect.Type) error {
 		fmt.Println(i, v)
 		return nil
 	})
@@ -80,7 +80,7 @@ func ExampleMapValueOfStructFields() {
 		B: 123,
 		C: 456,
 	})
-	reflectils.MapValueOfStructFields(v, func(i int, v reflect.Value) error {
+	_ = reflectils.MapValueOfStructFields(v, func(i int, v reflect.Value) error {
 		fmt.Println(i, v)
 		return nil
 	})

@@ -47,7 +47,7 @@ func MapValueOfStructFields(v reflect.Value, f func(i int, v reflect.Value) erro
 func FindTypeOfStructFieldsByKind(v reflect.Type, k ...reflect.Kind) (r map[int]reflect.Type) {
 	r = make(map[int]reflect.Type)
 	m := NewMapOfKind(k...)
-	MapTypeOfStructFields(v, func(i int, v reflect.Type) error {
+	_ = MapTypeOfStructFields(v, func(i int, v reflect.Type) error {
 		if m.Has(v.Kind()) {
 			r[i] = v
 		}
@@ -60,7 +60,7 @@ func FindTypeOfStructFieldsByKind(v reflect.Type, k ...reflect.Kind) (r map[int]
 func FindValueOfStructFieldsByKind(v reflect.Value, k ...reflect.Kind) (r map[int]reflect.Value) {
 	r = make(map[int]reflect.Value)
 	m := NewMapOfKind(k...)
-	MapValueOfStructFields(v, func(i int, v reflect.Value) error {
+	_ = MapValueOfStructFields(v, func(i int, v reflect.Value) error {
 		if m.Has(v.Kind()) {
 			r[i] = v
 		}
