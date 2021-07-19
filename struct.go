@@ -19,7 +19,7 @@ func MapStructFields(v reflect.Type, f func(i int, v reflect.StructField) error)
 	return
 }
 
-// MapTypeOfStructFields calls f with v fields.
+// MapTypeOfStructFields calls f with v fields type.
 // will break iteration if f returns an error.
 func MapTypeOfStructFields(v reflect.Type, f func(i int, v reflect.Type) error) (err error) {
 	n := v.NumField()
