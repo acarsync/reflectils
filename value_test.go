@@ -23,3 +23,29 @@ func ExampleGetValueByKind_withInvalidValue() {
 	// Output:
 	// false <invalid reflect.Value>
 }
+
+func ExampleNewSliceOfValue() {
+	v := reflectils.NewSliceOfValue("reflectils", reflect.ValueOf(1), 2.3)
+	_ = reflectils.IterValue(v, func(i int, e reflect.Value) (err error) {
+		fmt.Println(e)
+		return nil
+	})
+	// Output:
+	// reflectils
+	// 1
+	// 2.3
+}
+
+func ExampleIterValue() {
+	v := reflectils.NewSliceOfValue("reflectils", reflect.ValueOf(1), 2.3)
+	_ = reflectils.IterValue(v, func(i int, e reflect.Value) (err error) {
+		if e.Kind() == reflect.Int {
+			err = reflectils.ErrStopIteration
+		}
+		fmt.Println(i, e)
+		return
+	})
+	// Output:
+	// 0 reflectils
+	// 1 1
+}
