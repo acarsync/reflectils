@@ -8,13 +8,13 @@ import (
 )
 
 func ExampleGetTypeByKind() {
-	v := reflect.TypeOf(&ExampleStruct{
-		A: "reflectils",
-	})
+	v := reflect.TypeOf(&struct{ Name string }{"reflectils"})
 	res, ok := reflectils.GetTypeByKind(v, reflect.Struct)
+	fmt.Println(v)
 	fmt.Println(ok, res)
 	// Output:
-	// true reflectils_test.ExampleStruct
+	// *struct { Name string }
+	// true struct { Name string }
 }
 
 func ExampleGetTypeByKind_withInvalidValue() {

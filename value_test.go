@@ -8,13 +8,13 @@ import (
 )
 
 func ExampleGetValueByKind() {
-	v := reflect.ValueOf(&ExampleStruct{
-		A: "reflectils",
-	})
+	v := reflect.ValueOf(&struct{ Name string }{"reflectils"})
 	res, ok := reflectils.GetValueByKind(v, reflect.Struct)
+	fmt.Println(v)
 	fmt.Println(ok, res)
 	// Output:
-	// true {reflectils 0 0}
+	// &{reflectils}
+	// true {reflectils}
 }
 
 func ExampleGetValueByKind_withInvalidValue() {
