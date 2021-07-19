@@ -17,3 +17,12 @@ func ExampleMapOfKind() {
 	// false
 	// true
 }
+
+func ExampleAnyKind() {
+	v := reflect.ValueOf("reflectils")
+	fmt.Println(reflectils.AnyKind(v, reflect.String))
+	fmt.Println(reflectils.AnyKind(v, reflect.Uint))
+	// Output:
+	// true
+	// false
+}
