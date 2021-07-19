@@ -26,6 +26,24 @@ func ExampleMapStructFields() {
 	// 2 C int
 }
 
+func ExampleMapStructFields_withErrorHandling() {
+	v := reflect.TypeOf((*ExampleStruct)(nil)).Elem()
+	err := reflectils.MapStructFields(v, func(i int, v reflect.StructField) (err error) {
+		switch v.Type.Kind() {
+		default:
+			return errors.New("unexpected")
+		case reflect.String, reflect.Uint:
+		}
+		fmt.Println(i, v.Name, v.Type)
+		return nil
+	})
+	fmt.Println(err)
+	// Output:
+	// 0 A string
+	// 1 B uint
+	// unexpected
+}
+
 func ExampleMapTypeOfStructFields() {
 	v := reflect.TypeOf((*ExampleStruct)(nil)).Elem()
 	reflectils.MapTypeOfStructFields(v, func(i int, v reflect.Type) error {
