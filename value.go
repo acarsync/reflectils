@@ -22,7 +22,7 @@ again:
 	return reflect.Value{}, false
 }
 
-// SliceOfValue returns new slice of reflect.Value from v.
+// NewSliceOfValue returns new slice of reflect.Value from v.
 func NewSliceOfValue(v ...interface{}) (r []reflect.Value) {
 	for _, e := range v {
 		if ve, ok := e.(reflect.Value); ok {
